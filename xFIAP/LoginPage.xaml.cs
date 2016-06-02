@@ -32,7 +32,7 @@ namespace xFIAP
         private async void btnEntrar_Click(object sender, RoutedEventArgs e)
         {
             LoginModel userAuth = App.LoginVM.Usuarios.Where(
-                a => a.Nome.ToLower() == txtUsuario.Text.ToLower() &&
+                a => a.Username.ToLower() == txtUsuario.Text.ToLower() &&
                 a.Password == pwdSenha.Password).FirstOrDefault();
                        
             if (userAuth != null)

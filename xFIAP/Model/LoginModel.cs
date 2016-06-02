@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Windows.Data.Xml.Dom;
 
@@ -26,28 +27,20 @@ namespace xFIAP.Model
 
             var httpRequest = new HttpClient();
             var stream = await httpRequest.GetStreamAsync("http://www.wopek.com/xml/usuarios.xml");
-            var reader = new StreamReader(stream);
-            //var usuarioSerializer = new DataContractJsonSerializer(typeof(List<LoginModel>));
-            //usuarioSqlAzure = (List<LoginModel>)usuarioSerializer.ReadObject(stream);
-
+            var reader = new StreamReader(stream,Encoding.UTF8);
+            var xmlFile = reader.ReadToEnd();
             XmlDocument doc = new XmlDocument();
-            doc.LoadXml(reader.ReadToEnd());
-
-            XmlNodeList nodes = doc.DocumentElement.SelectNodes("/usuarios");
-
+            doc.LoadXml(xmlFile);
+            XmlNodeList nodes = doc.DocumentElement.SelectNodes("/usuarios/usuario");
             usuarioSqlAzure = new List<LoginModel>();
-
             foreach (IXmlNode node in nodes)
             {
                 LoginModel loginModel = new LoginModel();
-
                 loginModel.Nome = node.SelectSingleNode("nome").InnerText;
                 loginModel.Password = node.SelectSingleNode("password").InnerText;
                 loginModel.Username = node.SelectSingleNode("username").InnerText;
-
                 usuarioSqlAzure.Add(loginModel);
             }
-            
 
             return usuarioSqlAzure;
         }
