@@ -29,6 +29,7 @@ namespace xFIAP
         //TODO: Inicializar ViewModels
 
         public static LoginViewModel LoginVM { get; set; }
+        
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
