@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using xFIAP.ViewModel;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -26,14 +15,12 @@ namespace xFIAP.View
         public ProdutoPage()
         {
             this.InitializeComponent();
-            this.InitializeProduto();
+            this.Loaded += ProdutoView_Loaded;
         }
 
-        public ProdutoViewModel ProdutoVM { get; private set; }
-
-        private void InitializeProduto()
+        private void ProdutoView_Loaded(object sender, RoutedEventArgs e)
         {
-            ProdutoVM = new ProdutoViewModel();
+            this.DataContext = App.ProdutoVM;
         }
     }
 }

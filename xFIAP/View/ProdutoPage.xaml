@@ -24,24 +24,23 @@
                        FontSize="23"
                        HorizontalAlignment="Center"/>
         </StackPanel>
-        
-        <ListBox Grid.Row="1" x:Name="lstProduto"
-                Margin="5 10 5 10"
-                ItemsSource="{Binding Produtos}"
-                SelectedItem="{Binding ProdutoSelecionado, Mode=TwoWay}">
+        <ListBox Grid.Row="1" x:Name="lstProdutos"
+                 Margin="5 10 5 10"
+                 ItemsSource="{Binding Produtos}"
+                 SelectedItem="{Binding ProdutoSelecionado, Mode=TwoWay}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Descricao }" Margin="2"
-                                Width="250" HorizontalAlignment="Left" />
-                        <CheckBox IsChecked="{Binding Preco}"
-                                IsEnabled="False" 
-                                HorizontalAlignment="Right" />
+                        <TextBlock Text="{Binding Descricao}" Margin="2"
+                                   Width="250" HorizontalAlignment="Left" />
+                        <TextBlock Text="{Binding Quantidade}" Margin="2"
+                                   Width="250" HorizontalAlignment="Left" />
+                        
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
+
         </ListBox>
-        
 
     </Grid>
 </Page>

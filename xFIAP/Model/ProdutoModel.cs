@@ -52,5 +52,7 @@ namespace xFIAP.Model
 
             return produtoSqlAzure;
         }
+
+        
     }
 }
