@@ -30,22 +30,22 @@
 
         <StackPanel Grid.Row="1" Margin="10 10 10 0"
                     VerticalAlignment="Top">
-            <TextBlock Text="{x:Bind Path=ViewModel.produto.Descricao}"
+            <TextBlock Text="{x:Bind Path=ViewModel.Produto.Descricao}"
                        FontFamily="Impact"
                        FontSize="18"
                        HorizontalAlignment="Left"/>
 
-            <TextBlock Text="{x:Bind Path=ViewModel.produto.Categoria}"
+            <TextBlock Text="{x:Bind Path=ViewModel.Produto.Categoria}"
                        FontFamily="Impact"
                        FontSize="16"
                        HorizontalAlignment="Left"/>
 
-            <TextBlock Text="{x:Bind Path=ViewModel.produto.Quantidade}"
+            <TextBlock Text="{x:Bind Path=ViewModel.Produto.Quantidade}"
                        FontFamily="Impact"
                        FontSize="16"
                        HorizontalAlignment="Left"/>
 
-            <TextBlock Text="{x:Bind Path=ViewModel.produto.Precounitario}"
+            <TextBlock Text="{x:Bind Path=ViewModel.Produto.Precounitario}"
                        FontFamily="Impact"
                        FontSize="16"
                        HorizontalAlignment="Left"/>
@@ -63,7 +63,18 @@
         </StackPanel>
 
         <StackPanel Grid.Row="3" Margin="0 10 10 0" Orientation="Horizontal">
-            
+            <ListBox Grid.Row="1" x:Name="lstProdutos"
+                 Margin="5 10 5 10"
+                 ItemsSource="{Binding Comentarios}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Comentario}" Margin="2"
+                                   Width="250" HorizontalAlignment="Left" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </StackPanel>
 
     </Grid>

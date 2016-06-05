@@ -39,7 +39,6 @@
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
-
         </ListBox>
 
     </Grid>

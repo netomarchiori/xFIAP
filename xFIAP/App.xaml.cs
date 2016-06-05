@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using xFIAP.Model;
 using xFIAP.ViewModel;
 
 namespace xFIAP
@@ -39,9 +40,19 @@ namespace xFIAP
         public App()
         {
             this.InitializeComponent();
+            this.InitializeDb();
             this.InitializeLogin();
             this.InitializeProduto();
             this.Suspending += OnSuspending;
+        }
+
+        private void InitializeDb()
+        {
+            var sqlpath = System.IO.Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "ComentarioDb.sqlite");
+            using (SQLite.Net.SQLiteConnection conn = new SQLite.Net.SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), sqlpath))
+            {
+                conn.CreateTable<ComentarioProdutoModel>();
+            }
         }
 
         private void InitializeProduto()
@@ -92,6 +103,11 @@ namespace xFIAP
 
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
+
+                SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+                    rootFrame.CanGoBack ? AppViewBackButtonVisibility.Visible :
+                    AppViewBackButtonVisibility.Collapsed;
             }
 
             if (rootFrame.Content == null)
@@ -127,6 +143,17 @@ namespace xFIAP
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
+        }
+
+        private void OnBackRequested(object sender, BackRequestedEventArgs e)
+        {
+            Frame rootFrame = Window.Current.Content as Frame;
+
+            if (rootFrame.CanGoBack)
+            {
+                e.Handled = true;
+                rootFrame.GoBack();
+            }
         }
 
         private void OnNavigated(object sender, NavigationEventArgs e)

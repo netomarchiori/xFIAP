@@ -29,18 +29,27 @@ namespace xFIAP.View
         public ProdutoDetalhe()
         {
             this.InitializeComponent();
-            this.ViewModel = new ProdutoDetalheViewModel();
+            ProdutoDetalheViewModel ProdutoDetalheVM = new ProdutoDetalheViewModel();
+            this.ViewModel = ProdutoDetalheVM;
+            this.DataContext = ProdutoDetalheVM;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ViewModel.produto = e.Parameter as ProdutoModel;
-            System.Diagnostics.Debug.WriteLine(string.Format("ProdutDetalhe OnNavigatedTo {0}", ViewModel.produto.Descricao));
+            ViewModel.Produto = e.Parameter as ProdutoModel;
+            System.Diagnostics.Debug.WriteLine(string.Format("ProdutoDetalhe OnNavigatedTo {0}", ViewModel.Produto.Descricao));
         }
 
         private void btnComentar_Click(object sender, RoutedEventArgs e)
         {
             System.Diagnostics.Debug.WriteLine(txtComentario.Text);
+            ComentarioProdutoModel comentario = new ComentarioProdutoModel();
+            comentario.Id = 1;
+            comentario.Produto = ViewModel.Produto.Descricao;
+            comentario.Comentario = txtComentario.Text;
+            ComentarioProdutoRepository.CriarComentario(comentario);
+            //ToDo: Comentarios are not refreshing
+            ViewModel.GetComentarios();
             txtComentario.Text = "";
         }
     }
