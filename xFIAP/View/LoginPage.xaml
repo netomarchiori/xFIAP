@@ -13,7 +13,7 @@
             <TextBlock Text="xFIAP"
                        FontFamily="Impact"
                        FontSize="26"
-                       HorizontalAlignment="Center"/>
+                       HorizontalAlignment="Center" Foreground="#FFFF0049"/>
             
             <TextBlock Text="Autenticação"
                        FontFamily="Impact"

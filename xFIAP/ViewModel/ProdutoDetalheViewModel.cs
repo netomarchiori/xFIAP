@@ -23,19 +23,19 @@ namespace xFIAP.ViewModel
 
         }
 
-        public ProdutoDetalheViewModel()
+        public ProdutoDetalheViewModel(string produto)
         {
-            this.InitializeVM();
+            this.InitializeVM(produto);
         }
 
-        private async void InitializeVM()
+        private async void InitializeVM(string produto)
         {
-            _comentario = await ComentarioProdutoRepository.GetComentariosAsync();
+            Comentarios = await ComentarioProdutoRepository.GetComentariosAsync(produto);
         }
 
-        public async void GetComentarios()
+        public async void GetComentarios(string produto)
         {
-            _comentario = await ComentarioProdutoRepository.GetComentariosAsync();
+            Comentarios = await ComentarioProdutoRepository.GetComentariosAsync(produto);
         }
 
         private void RaisePropertyChanged(string propertyName)

@@ -25,32 +25,40 @@ namespace xFIAP.View
     public sealed partial class ProdutoDetalhe : Page
     {
         public ProdutoDetalheViewModel ViewModel { get; private set; }
+        public ProdutoDetalheViewModel ProdutoDetalheVM { get; private set; }
 
         public ProdutoDetalhe()
         {
             this.InitializeComponent();
-            ProdutoDetalheViewModel ProdutoDetalheVM = new ProdutoDetalheViewModel();
-            this.ViewModel = ProdutoDetalheVM;
-            this.DataContext = ProdutoDetalheVM;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ViewModel.Produto = e.Parameter as ProdutoModel;
-            System.Diagnostics.Debug.WriteLine(string.Format("ProdutoDetalhe OnNavigatedTo {0}", ViewModel.Produto.Descricao));
+            ProdutoModel produto = e.Parameter as ProdutoModel;
+
+            ProdutoDetalheVM = new ProdutoDetalheViewModel(produto.Descricao);
+            this.ViewModel = ProdutoDetalheVM;
+            this.DataContext = ProdutoDetalheVM;
+            ViewModel.Produto = produto;
+            System.Diagnostics.Debug.WriteLine(string.Format("ProdutoDetalhe OnNavigatedTo {0}", produto.Descricao));
         }
 
         private void btnComentar_Click(object sender, RoutedEventArgs e)
         {
             System.Diagnostics.Debug.WriteLine(txtComentario.Text);
             ComentarioProdutoModel comentario = new ComentarioProdutoModel();
-            comentario.Id = 1;
+            comentario.Id = DateTime.Now.Millisecond;
             comentario.Produto = ViewModel.Produto.Descricao;
             comentario.Comentario = txtComentario.Text;
             ComentarioProdutoRepository.CriarComentario(comentario);
             //ToDo: Comentarios are not refreshing
-            ViewModel.GetComentarios();
+            ViewModel.GetComentarios(ViewModel.Produto.Descricao);
             txtComentario.Text = "";
+        }
+
+        private void txtComentario_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

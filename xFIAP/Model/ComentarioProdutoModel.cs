@@ -41,13 +41,17 @@ namespace xFIAP.Model
             }
         }
 
-        public static async Task<ObservableCollection<ComentarioProdutoModel>> GetComentariosAsync()
+        public static async Task<ObservableCollection<ComentarioProdutoModel>> GetComentariosAsync(string produto)
         {
             var sqlpath = System.IO.Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "ComentarioDb.sqlite");
             using (SQLite.Net.SQLiteConnection conn = new SQLite.Net.SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), sqlpath))
             {
-                List<ComentarioProdutoModel> myCollection = conn.Table<ComentarioProdutoModel>().ToList<ComentarioProdutoModel>();
+                //List<ComentarioProdutoModel> myCollection = conn.Table<ComentarioProdutoModel>().ToList<ComentarioProdutoModel>();
+                //ObservableCollection<ComentarioProdutoModel> ComentarioList = new ObservableCollection<ComentarioProdutoModel>(myCollection);
+
+                var myCollection = conn.Query<ComentarioProdutoModel>("select * from ComentarioProdutoModel where Produto = '" + produto + "' Order by Id DESC").ToList<ComentarioProdutoModel>();
                 ObservableCollection<ComentarioProdutoModel> ComentarioList = new ObservableCollection<ComentarioProdutoModel>(myCollection);
+
                 return ComentarioList;
             }
         }

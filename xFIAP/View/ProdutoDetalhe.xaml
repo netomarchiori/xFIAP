@@ -55,7 +55,7 @@
             
             <TextBox x:Name="txtComentario" 
                      Margin="10"
-                     PlaceholderText="Comente" Width="250"/>
+                     PlaceholderText="Comente" Width="200" TextChanged="txtComentario_TextChanged"/>
             <Button x:Name="btnComentar"
             		Content="Comentar"
             		Margin="5"

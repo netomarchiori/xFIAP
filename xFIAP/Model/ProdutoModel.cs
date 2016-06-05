@@ -16,12 +16,17 @@ namespace xFIAP.Model
         public string Descricao { get; set; }
         public string Categoria { get; set; }
         public string Quantidade { get; set; }
-        public string Precounitario { get; set; }
+        private string _precounitario { get; set; }
+        public string Precounitario
+        {
+            get { return "R$ " + _precounitario + ".00"; }
+            set { _precounitario = value; }
+        }
     }
 
     public static class ProdutoRepository
     {
-        
+
         private static List<ProdutoModel> produtoSqlAzure;
 
         public static async Task<List<ProdutoModel>> GetProdutoWebserviceAsync()
@@ -34,12 +39,12 @@ namespace xFIAP.Model
             var xmlFile = reader.ReadToEnd();
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(xmlFile);
-           
+
             XmlNodeList nodes = doc.DocumentElement.SelectNodes("/produtos/produto");
             produtoSqlAzure = new List<ProdutoModel>();
 
 
-            foreach (IXmlNode node in nodes) 
+            foreach (IXmlNode node in nodes)
             {
                 ProdutoModel produtoModel = new ProdutoModel();
                 produtoModel.Descricao = node.SelectSingleNode("descricao").InnerText;
@@ -53,6 +58,6 @@ namespace xFIAP.Model
             return produtoSqlAzure;
         }
 
-        
+
     }
 }
