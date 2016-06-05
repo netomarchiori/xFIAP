@@ -29,7 +29,7 @@ namespace xFIAP
         //TODO: Inicializar ViewModels
 
         public static LoginViewModel LoginVM { get; set; }
-        public static object ProdutoVM { get; internal set; }
+        public static ProdutoViewModel ProdutoVM { get; internal set; }
 
 
         /// <summary>
@@ -40,7 +40,13 @@ namespace xFIAP
         {
             this.InitializeComponent();
             this.InitializeLogin();
+            this.InitializeProduto();
             this.Suspending += OnSuspending;
+        }
+
+        private void InitializeProduto()
+        {
+            ProdutoVM = new ProdutoViewModel();
         }
 
         private void InitializeLogin()

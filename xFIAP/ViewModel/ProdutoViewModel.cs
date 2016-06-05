@@ -21,10 +21,10 @@ namespace xFIAP.ViewModel
         {
             //DeleteProdutoCommando = new DeleteProdutoCommand(this);
 
-            this.LoadedUsuario();
+            this.LoadedProduto();
         }
 
-        public async void LoadedUsuario()
+        public async void LoadedProduto()
         {
             FiltroProdutos = await ProdutoRepository.GetProdutoWebserviceAsync();
             ExecutarFiltro();
