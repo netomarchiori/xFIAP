@@ -27,7 +27,7 @@
         <ListBox Grid.Row="1" x:Name="lstProdutos"
                  Margin="5 10 5 10"
                  ItemsSource="{Binding Produtos}"
-                 SelectedItem="{Binding ProdutoSelecionado, Mode=TwoWay}">
+                 SelectionChanged="lstProdutos_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
