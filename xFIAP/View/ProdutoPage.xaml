@@ -11,35 +11,47 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <CommandBar Background="#FFFF0049" RequestedTheme="Dark">
+            <AppBarToggleButton x:Name="btnMenu" Icon="List" Label="Menu"
+                                IsChecked="{Binding IsPaneOpen, ElementName=slwMenu, Mode=TwoWay}" />
+            <CommandBar.Content>
+                <TextBlock Margin="12,8" FontSize="24" Text="xFIAP" />
+            </CommandBar.Content>
 
-        <StackPanel Grid.Row="0" Margin="0"
-                    VerticalAlignment="Top">
-            <TextBlock Text="xFIAP"
-                       FontFamily="Impact"
-                       FontSize="26"
-                       HorizontalAlignment="Center"/>
+        </CommandBar>
+        <SplitView x:Name="slwMenu" IsPaneOpen="False" Grid.Row="1" OpenPaneLength="200" >
+            <SplitView.Pane>
+                <StackPanel Background="LightGray">
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="btnAddContato" Content="&#xE105;" 
+                            FontFamily="Segoe MDL2 Assets" Margin="5"
+                            Height="50" Width="50" Background="Transparent"/>
+                        <TextBlock Text="Clientes" FontFamily="15" VerticalAlignment="Center" />
+                    </StackPanel>
+                </StackPanel>
 
-            <TextBlock Text="Produtos"
-                       FontFamily="Impact"
-                       FontSize="23"
-                       HorizontalAlignment="Center"/>
-        </StackPanel>
-        <ListBox Grid.Row="1" x:Name="lstProdutos"
+            </SplitView.Pane>
+            <SplitView.Content>
+                <StackPanel>
+                    <TextBlock Text="Produtos" Margin="10" FontWeight="Bold"/>
+                    <ListBox Grid.Row="1" x:Name="lstProdutos"
                  Margin="5 10 5 10"
                  ItemsSource="{Binding Produtos}"
                  SelectionChanged="lstProdutos_SelectionChanged">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Descricao}" Margin="2"
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Descricao}" Margin="2"
                                    Width="250" HorizontalAlignment="Left" />
-                        <TextBlock Text="{Binding Quantidade}" Margin="2"
+                                    <TextBlock Text="{Binding Quantidade}" Margin="2"
                                    Width="250" HorizontalAlignment="Left" />
-                        
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
 
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </SplitView.Content>
+        </SplitView>
     </Grid>
 </Page>

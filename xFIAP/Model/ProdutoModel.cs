@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,7 +56,7 @@ namespace xFIAP.Model
                 produtoSqlAzure.Add(produtoModel);
             }
 
-            return produtoSqlAzure;
+            return produtoSqlAzure.OrderBy(o => o.Descricao).ToList(); ;
         }
 
 

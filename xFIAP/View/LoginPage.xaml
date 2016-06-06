@@ -11,12 +11,12 @@
         <StackPanel Margin="0"
                     VerticalAlignment="Center">
             <TextBlock Text="xFIAP"
-                       FontFamily="Impact"
+                       FontFamily="15"
                        FontSize="26"
                        HorizontalAlignment="Center" Foreground="#FFFF0049"/>
             
-            <TextBlock Text="Autenticação"
-                       FontFamily="Impact"
+            <TextBlock Text="Login"
+                       FontFamily="15"
                        FontSize="23"
                        HorizontalAlignment="Center"/>
 

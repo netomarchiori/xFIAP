@@ -15,38 +15,33 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Margin="0"
-                    VerticalAlignment="Top">
-            <TextBlock Text="xFIAP"
-                       FontFamily="Impact"
-                       FontSize="26"
-                       HorizontalAlignment="Center"/>
+        <CommandBar Background="#FFFF0049" RequestedTheme="Dark">
+            <CommandBar.Content>
+                <TextBlock Margin="12,8" FontSize="24" Text="xFIAP" />
+            </CommandBar.Content>
 
-            <TextBlock Text="Produtos"
-                       FontFamily="Impact"
-                       FontSize="23"
-                       HorizontalAlignment="Center"/>
-        </StackPanel>
+        </CommandBar>
 
         <StackPanel Grid.Row="1" Margin="10 10 10 0"
                     VerticalAlignment="Top">
+            <TextBlock Text="Detalhes Produto" FontWeight="Bold" />
             <TextBlock Text="{x:Bind Path=ViewModel.Produto.Descricao}"
-                       FontFamily="Impact"
+                       FontFamily="15"
                        FontSize="18"
                        HorizontalAlignment="Left"/>
 
             <TextBlock Text="{x:Bind Path=ViewModel.Produto.Categoria}"
-                       FontFamily="Impact"
+                       FontFamily="15"
                        FontSize="16"
                        HorizontalAlignment="Left"/>
 
             <TextBlock Text="{x:Bind Path=ViewModel.Produto.Quantidade}"
-                       FontFamily="Impact"
+                       FontFamily="15"
                        FontSize="16"
                        HorizontalAlignment="Left"/>
 
             <TextBlock Text="{x:Bind Path=ViewModel.Produto.Precounitario}"
-                       FontFamily="Impact"
+                       FontFamily="15"
                        FontSize="16"
                        HorizontalAlignment="Left"/>
         </StackPanel>
