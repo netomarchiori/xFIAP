@@ -9,6 +9,7 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <CommandBar Background="#FFFF0049" RequestedTheme="Dark">
@@ -53,5 +54,10 @@
                 </StackPanel>
             </SplitView.Content>
         </SplitView>
+        <StackPanel Grid.Row="2">
+            <TextBox Text="{Binding PesquisaNome, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     PlaceholderText="Pesquisa por produto" />
+
+        </StackPanel>
     </Grid>
 </Page>
