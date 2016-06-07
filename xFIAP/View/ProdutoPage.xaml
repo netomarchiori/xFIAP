@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" x:Name="canvas">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -35,6 +35,10 @@
             <SplitView.Content>
                 <StackPanel>
                     <TextBlock Text="Produtos" Margin="10" FontWeight="Bold"/>
+                    <TextBox Text="{Binding PesquisaNome, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     PlaceholderText="Pesquisa por produto" />
+                    <ComboBox ItemsSource="{Binding Categorias}" Width="{Binding ElementName=canvas, Path=ActualWidth}"
+                              PlaceholderText="Categoria" SelectionChanged="ComboBox_SelectionChanged"/>
                     <ListBox Grid.Row="1" x:Name="lstProdutos"
                  Margin="5 10 5 10"
                  ItemsSource="{Binding Produtos}"
@@ -54,10 +58,5 @@
                 </StackPanel>
             </SplitView.Content>
         </SplitView>
-        <StackPanel Grid.Row="2">
-            <TextBox Text="{Binding PesquisaNome, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     PlaceholderText="Pesquisa por produto" />
-
-        </StackPanel>
     </Grid>
 </Page>

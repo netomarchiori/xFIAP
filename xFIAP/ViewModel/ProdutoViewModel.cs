@@ -14,6 +14,7 @@ namespace xFIAP.ViewModel
         //public List<ProdutoModel> Produtos { get; set; } = new List<ProdutoModel>();
         public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<ProdutoModel> Produtos { get; set; } = new ObservableCollection<ProdutoModel>();
+        public ObservableCollection<string> Categorias { get; set; } = new ObservableCollection<string>();
         public List<ProdutoModel> FiltroProdutos { get; set; } = new List<ProdutoModel>();
         private ProdutoModel produtoSelecionado;
 
@@ -28,6 +29,18 @@ namespace xFIAP.ViewModel
         {
             FiltroProdutos = await ProdutoRepository.GetProdutoWebserviceAsync();
             ExecutarFiltro();
+            ListaCategorias();
+        }
+
+        private void ListaCategorias()
+        {
+            List<string> todasCategorias = new List<string>();
+            foreach(ProdutoModel p in FiltroProdutos)
+            {
+                todasCategorias.Add(p.Categoria);
+            }
+            Categorias = new ObservableCollection<string>(todasCategorias.Distinct().OrderBy(i => i).ToList());
+            Categorias.Insert(0, "Todos");
         }
 
         public ProdutoModel ProdutoSelecionado
@@ -55,11 +68,27 @@ namespace xFIAP.ViewModel
             }
         }
 
+        private string categoria;
+        public string Categoria
+        {
+            get { return categoria; }
+            set
+            {
+                categoria = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Categoria)));
+                ExecutarFiltro();
+            }
+        }
+
         public void ExecutarFiltro()
         {
             if (pesquisaNome == null) pesquisaNome = "";
             var resultado = FiltroProdutos.Where(n => n.Descricao.ToLowerInvariant()
                                    .Contains(PesquisaNome.ToLowerInvariant().Trim())).ToList();
+
+            if (categoria != null && categoria.ToLowerInvariant() != "todos" && categoria.Length > 0)
+                resultado = resultado.Where(n => n.Categoria.ToLowerInvariant()
+                                   .Contains(Categoria.ToLowerInvariant().Trim())).ToList();
 
             var removerDaLista = Produtos.Except(resultado).ToList();
             foreach (var item in removerDaLista)

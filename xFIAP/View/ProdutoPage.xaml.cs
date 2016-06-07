@@ -34,5 +34,11 @@ namespace xFIAP.View
                 Frame.Navigate(typeof(ProdutoDetalhe),selectedProduct);
             }
         }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            App.ProdutoVM.Categoria = ((ComboBox)sender).SelectedValue.ToString();
+            System.Diagnostics.Debug.WriteLine("Filtro Categoria => " + App.ProdutoVM.Categoria);
+        }
     }
 }
