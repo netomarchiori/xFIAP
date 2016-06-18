@@ -24,10 +24,10 @@
             <SplitView.Pane>
                 <StackPanel Background="LightGray">
                     <StackPanel Orientation="Horizontal">
-                        <Button x:Name="btnAddContato" Content="&#xE105;" 
+                        <Button x:Name="btnAgendarCliente" Content="&#xE163;" Tapped="btnAgendarCliente_Tapped"
                             FontFamily="Segoe MDL2 Assets" Margin="5"
                             Height="50" Width="50" Background="Transparent"/>
-                        <TextBlock Text="Clientes" FontFamily="15" VerticalAlignment="Center" />
+                        <TextBlock Text="Agendar Cliente" FontFamily="15" VerticalAlignment="Center" />
                     </StackPanel>
                 </StackPanel>
 

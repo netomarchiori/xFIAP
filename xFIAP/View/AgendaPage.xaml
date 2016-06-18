@@ -1,0 +1,71 @@
+﻿<Page
+    x:Class="xFIAP.View.AgendaPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:xFIAP.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" x:Name="canvas">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <CommandBar Background="#FFFF0049" RequestedTheme="Dark">
+            <AppBarToggleButton x:Name="btnMenu" Icon="List" Label="Menu"
+                                IsChecked="{Binding IsPaneOpen, ElementName=slwMenu, Mode=TwoWay}" />
+            <CommandBar.Content>
+                <TextBlock Margin="12,8" FontSize="24" Text="xFIAP" />
+            </CommandBar.Content>
+
+        </CommandBar>
+        <SplitView x:Name="slwMenu" IsPaneOpen="False" Grid.Row="1" OpenPaneLength="200" >
+            <SplitView.Pane>
+                <StackPanel Background="LightGray">
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="btnListaProdutos" Content="&#xE163;" Tapped="btnListaProdutos_Tapped"
+                            FontFamily="Segoe MDL2 Assets" Margin="5"
+                            Height="50" Width="50" Background="Transparent"/>
+                        <TextBlock Text="Listar Produtos" FontFamily="15" VerticalAlignment="Center" />
+                    </StackPanel>
+                </StackPanel>
+
+            </SplitView.Pane>
+            <SplitView.Content>
+                <StackPanel>
+                    <StackPanel>
+                        <TextBox x:Name="txtAssunto" PlaceholderText="Nome do Evento" 
+                                 Style="{StaticResource TextBoxNormal25MOB}" />
+                        <TextBox x:Name="txtLocalizacao" PlaceholderText="Localizacao" 
+                                 Style="{StaticResource TextBoxNormalMOB}" />
+
+                        <StackPanel Orientation="Horizontal" Margin="0 12 0 12">
+                            <CalendarDatePicker x:Name="dteInicio" Header="Inicio"
+                                                Width="185" />
+                            <TimePicker x:Name="tmeInicio" Header=" " 
+                                        Style="{StaticResource TimePickerMOB}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0 12 0 12">
+                            <CalendarDatePicker x:Name="dteTermino" Header="Termino"
+                                                Width="185" />
+                            <TimePicker x:Name="tmeTermino" Header=" " 
+                                        Style="{StaticResource TimePickerMOB}" />
+                        </StackPanel>
+                        <CheckBox x:Name="chkDiainteiro" IsChecked="False"
+                                  Content="Dia inteiro" Margin="0 12 0 12" />
+                    </StackPanel>
+                </StackPanel>
+            </SplitView.Content>
+        </SplitView>
+    </Grid>
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton x:Name="btnSalvar" Label="Salvar e Fechar"
+                          Icon="Save" Click="btnSalvar_Click" />
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>

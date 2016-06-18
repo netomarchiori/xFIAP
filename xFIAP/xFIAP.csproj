@@ -99,6 +99,9 @@
     <Compile Include="Model\ProdutoModel.cs" />
     <Compile Include="ViewModel\ProdutoDetalheViewModel.cs" />
     <Compile Include="ViewModel\ProdutoViewModel.cs" />
+    <Compile Include="View\AgendaPage.xaml.cs">
+      <DependentUpon>AgendaPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
@@ -136,6 +139,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="View\AgendaPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

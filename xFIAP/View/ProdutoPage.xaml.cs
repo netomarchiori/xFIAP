@@ -40,5 +40,10 @@ namespace xFIAP.View
             App.ProdutoVM.Categoria = ((ComboBox)sender).SelectedValue.ToString();
             System.Diagnostics.Debug.WriteLine("Filtro Categoria => " + App.ProdutoVM.Categoria);
         }
+
+        private void btnAgendarCliente_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(AgendaPage));
+        }
     }
 }

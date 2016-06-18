@@ -52,7 +52,7 @@
                      Margin="10"
                      PlaceholderText="Comente" Width="200" TextChanged="txtComentario_TextChanged"/>
             <Button x:Name="btnComentar"
-            		Content="Comentar"
+            		Content="&#xE122;" FontFamily="Segoe MDL2 Assets"
             		Margin="5"
             		Click="btnComentar_Click" />
         </StackPanel>
