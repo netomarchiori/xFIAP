@@ -64,8 +64,10 @@
 
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton x:Name="btnSalvar" Label="Salvar e Fechar"
+            <AppBarButton x:Name="btnSalvar" Label="Salvar"
                           Icon="Save" Click="btnSalvar_Click" />
+            <AppBarButton x:Name="btnRota" Label="Calcular Rota"
+                          Icon="Map" Click="btnRota_Click" />
         </CommandBar>
     </Page.BottomAppBar>
 </Page>
